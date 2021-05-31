@@ -6,13 +6,233 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/_1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.51"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/_2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/_3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button10"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/_4"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/_5"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button6"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/_6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button11"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/_7"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button14"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button8"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/_8"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button14"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/_9"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button15"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button12"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button8"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="50dp"
+        android:gravity="center"
+        android:text="@string/sum"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button11"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toTopOf="@+id/button3"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/minus"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button12"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/button10"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button6"
+        app:layout_constraintTop_toBottomOf="@+id/button10"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/multi"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button13"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/button11"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button9"
+        app:layout_constraintTop_toBottomOf="@+id/button11"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/div"
+        app:layout_constraintBottom_toBottomOf="@+id/button15"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/button12"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button15"
+        app:layout_constraintTop_toBottomOf="@+id/button12"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="157dp"
+        android:layout_height="79dp"
+        android:gravity="center"
+        android:text="@string/_0"
+        app:layout_constraintBottom_toBottomOf="@id/button15"
+        app:layout_constraintDimensionRatio="2:1"
+        app:layout_constraintEnd_toStartOf="@+id/button15"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/button7"
+        app:layout_constraintTop_toTopOf="@id/button15"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/button15"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/dot"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button14"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button13"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/button14"
+        app:layout_constraintTop_toBottomOf="@+id/button9"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
