@@ -11,6 +11,7 @@
 
     <Button
         android:id="@+id/button1"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -27,6 +28,7 @@
 
     <Button
         android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -43,6 +45,7 @@
 
     <Button
         android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -59,6 +62,7 @@
 
     <Button
         android:id="@+id/button4"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -75,6 +79,7 @@
 
     <Button
         android:id="@+id/button5"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -91,6 +96,7 @@
 
     <Button
         android:id="@+id/button6"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -107,6 +113,7 @@
 
     <Button
         android:id="@+id/button7"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -123,6 +130,7 @@
 
     <Button
         android:id="@+id/button8"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -139,13 +147,14 @@
 
     <Button
         android:id="@+id/button9"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/_9"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonDot"
-        app:layout_constraintEnd_toStartOf="@+id/buttonMultipl"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMultiply"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/button8"
@@ -155,6 +164,7 @@
 
     <Button
         android:id="@+id/buttonPlus"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -171,12 +181,13 @@
 
     <Button
         android:id="@+id/buttonMinus"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/minus"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMultipl"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMultiply"
         app:layout_constraintEnd_toEndOf="@+id/buttonPlus"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintHorizontal_weight="1"
@@ -186,7 +197,8 @@
         app:layout_constraintVertical_weight="1" />
 
     <Button
-        android:id="@+id/buttonMultipl"
+        android:id="@+id/buttonMultiply"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -203,6 +215,7 @@
 
     <Button
         android:id="@+id/button0"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -231,26 +244,29 @@
         app:layout_constraintStart_toEndOf="@+id/button0"
         app:layout_constraintTop_toBottomOf="@+id/button9"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintVertical_weight="1"
+        style="@style/Widget.AppCompat.Button.Colored" />
 
     <Button
         android:id="@+id/buttonDiv"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/div"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonDot"
-        app:layout_constraintEnd_toEndOf="@id/buttonMultipl"
+        app:layout_constraintEnd_toEndOf="@id/buttonMultiply"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/buttonDot"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMultipl"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMultiply"
         app:layout_constraintVertical_chainStyle="spread_inside"
         app:layout_constraintVertical_weight="1" />
 
     <Button
         android:id="@+id/buttonEqual"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -267,6 +283,7 @@
 
     <EditText
         android:id="@+id/textView2"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="0dp"
         android:layout_height="76dp"
         android:background="@color/purple_700"
