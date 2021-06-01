@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/image"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
 
 
@@ -267,6 +269,7 @@
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="76dp"
+        android:background="@color/purple_700"
         android:ems="2"
         android:inputType="number"
         android:singleLine="false"
