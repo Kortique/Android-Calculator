@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/image"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
 
 
@@ -311,9 +311,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/button1"
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalTop"
-        app:layout_constraintVertical_weight="1"
-        android:autofillHints=""
-        tools:ignore="LabelFor" />
+        app:layout_constraintVertical_weight="1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontalBottom"
