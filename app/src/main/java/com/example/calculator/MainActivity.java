@@ -1,8 +1,10 @@
 package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+
 import com.example.calculator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -11,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private StringBuilder value1 = new StringBuilder("");
     private StringBuilder value2 = new StringBuilder("");
     private String sign;
-    private double result;
+    private Double result;
     private boolean hasDot = false;
 
     @Override
@@ -30,12 +32,13 @@ public class MainActivity extends AppCompatActivity {
         binding.button7.setOnClickListener(v -> setField("7"));
         binding.button8.setOnClickListener(v -> setField("8"));
         binding.button9.setOnClickListener(v -> setField("9"));
-        binding.buttonPlus.setOnClickListener(v -> operationAdd());
-        binding.buttonMinus.setOnClickListener(v -> operationSubtract());
-        binding.buttonMultiply.setOnClickListener(v -> operationMultiply());
-        binding.buttonDiv.setOnClickListener(v -> operationDivide());
+        binding.buttonPlus.setOnClickListener(v -> arithmeticOperation("+"));
+        binding.buttonMinus.setOnClickListener(v -> arithmeticOperation("-"));
+        binding.buttonMultiply.setOnClickListener(v -> arithmeticOperation("*"));
+        binding.buttonDiv.setOnClickListener(v -> arithmeticOperation("/"));
         binding.buttonEqual.setOnClickListener(v -> operationEqual());
         binding.buttonDot.setOnClickListener(v -> operationDot());
+        binding.buttonClear.setOnClickListener(v -> operationClear());
     }
 
     @SuppressLint("SetTextI18n")
@@ -46,33 +49,11 @@ public class MainActivity extends AppCompatActivity {
         binding.textView3.setText(value2);
     }
 
-    private void changeValues() {
+    private void arithmeticOperation(String s) {
+        hasDot = false;
+        sign = s;
         value2.append(value1);
         value1.delete(0, value1.length());
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void operationAdd() {
-        sign = "+";
-        changeValues();
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void operationSubtract() {
-        sign = "-";
-        changeValues();
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void operationMultiply() {
-        sign = "*";
-        changeValues();
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void operationDivide() {
-        sign = "/";
-        changeValues();
     }
 
     private void operationDot() {
@@ -86,30 +67,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void operationEqual() {
-        double num1 = Double.parseDouble(String.valueOf(value2));
-        double num2 = Double.parseDouble(String.valueOf(value1));
-        switch (sign) {
-            default:
-                break;
-            case "+":
-                result = num1 + num2;
-                break;
-            case "-":
-                result = num1 - num2;
-                break;
-            case "*":
-                result = num1 * num2;
-                break;
-            case "/":
-                result = num1 / num2;
-                break;
-        }
-        binding.textView.setText(String.valueOf(result));
-        value1.delete(0,value1.length());
-        value2.delete(0,value2.length());
-        value2.append(result);
+    private void operationClear() {
+        clearValue();
+        binding.textView.setText("");
+        binding.textView2.setText("");
+        binding.textView3.setText("");
     }
 
+    private void clearValue() {
+        value1.delete(0, value1.length());
+        value2.delete(0, value2.length());
+    }
 
+    private void operationEqual() {
+        if (sign != null) {
+            double num1 = Double.parseDouble(String.valueOf(value2));
+            double num2 = Double.parseDouble(String.valueOf(value1));
+            switch (sign) {
+                default:
+                    break;
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    result = num1 / num2;
+                    break;
+            }
+            binding.textView.setText(String.valueOf(result));
+            clearValue();
+            value2.append(result);
+        }
+    }
 }

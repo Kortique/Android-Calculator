@@ -16,4 +16,7 @@
     <string name="div">/</string>
     <string name="equal">=</string>
     <string name="dot">.</string>
+    <string name="clear">C</string>
+    <string name="reverse">+/-</string>
+    <string name="erase">Del</string>
 </resources>
