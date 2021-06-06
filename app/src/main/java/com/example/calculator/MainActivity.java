@@ -39,14 +39,16 @@ public class MainActivity extends AppCompatActivity {
         binding.buttonEqual.setOnClickListener(v -> operationEqual());
         binding.buttonDot.setOnClickListener(v -> operationDot());
         binding.buttonClear.setOnClickListener(v -> operationClear());
+        binding.buttonErase.setOnClickListener(v -> operationErase());
+        binding.buttonReverse.setOnClickListener(v -> operationReverse());
     }
 
     @SuppressLint("SetTextI18n")
     private void setField(String symbol) {
         binding.textView.setText(value1 + symbol);
         value1.append(symbol);
-        binding.textView2.setText(value1);
-        binding.textView3.setText(value2);
+//        binding.textView2.setText(value1);
+//        binding.textView3.setText(value2);
     }
 
     private void arithmeticOperation(String s) {
@@ -68,15 +70,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void operationClear() {
+        hasDot = false;
         clearValue();
         binding.textView.setText("");
-        binding.textView2.setText("");
-        binding.textView3.setText("");
+//        binding.textView2.setText("");
+//        binding.textView3.setText("");
+    }
+
+    private void operationErase() {
+        if (value1.length() != 0) {
+            if (value1.charAt(value1.length() - 1) == '.') hasDot = false;
+            value1.deleteCharAt(value1.length() - 1);
+            binding.textView.setText(value1);
+//            binding.textView2.setText(value1);
+        }
     }
 
     private void clearValue() {
         value1.delete(0, value1.length());
         value2.delete(0, value2.length());
+    }
+
+    private void operationReverse() {
+        if (value1.charAt(0) != '-') value1.insert(0, '-');
+        else if (value1.charAt(0) == '-') value1.deleteCharAt(0);
+        binding.textView.setText(value1);
     }
 
     private void operationEqual() {
@@ -99,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     result = num1 / num2;
                     break;
             }
+            hasDot = false;
             binding.textView.setText(String.valueOf(result));
             clearValue();
             value2.append(result);
