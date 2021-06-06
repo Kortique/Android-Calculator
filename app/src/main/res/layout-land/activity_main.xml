@@ -358,7 +358,7 @@
         android:id="@+id/textView"
         style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="0dp"
-        android:layout_height="76dp"
+        android:layout_height="60dp"
         android:background="@color/purple_500"
         android:singleLine="false"
         android:textAlignment="textEnd"
@@ -375,35 +375,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="50dp" />
+        app:layout_constraintGuide_begin="20dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontalCenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.20" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontalBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="50dp" />
+        app:layout_constraintGuide_end="20dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVerticalStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="50dp" />
+        app:layout_constraintGuide_begin="180dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVerticalEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="50dp" />
+        app:layout_constraintGuide_end="180dp" />
 
     <TextView
         android:id="@+id/textView2"

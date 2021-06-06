@@ -1,10 +1,8 @@
 package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
 import com.example.calculator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -118,9 +116,16 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             hasDot = false;
-            binding.textView.setText(String.valueOf(result));
+            printResult();
             clearValue();
             value2.append(result);
         }
+    }
+
+    private void printResult() {
+        if (result % 1 == 0) {
+            int intValue = (int)(Math.round(result));
+            binding.textView.setText(String.valueOf(intValue));
+        } else binding.textView.setText(String.valueOf(result));
     }
 }
