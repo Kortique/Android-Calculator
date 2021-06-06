@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity {
     private StringBuilder value1 = new StringBuilder("");
     private StringBuilder value2 = new StringBuilder("");
     private String sign;
+    private double result;
+    private boolean hasDot = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         binding.buttonMultiply.setOnClickListener(v -> operationMultiply());
         binding.buttonDiv.setOnClickListener(v -> operationDivide());
         binding.buttonEqual.setOnClickListener(v -> operationEqual());
+        binding.buttonDot.setOnClickListener(v -> operationDot());
     }
 
     @SuppressLint("SetTextI18n")
@@ -43,38 +46,65 @@ public class MainActivity extends AppCompatActivity {
         binding.textView3.setText(value2);
     }
 
+    private void changeValues() {
+        value2.append(value1);
+        value1.delete(0, value1.length());
+    }
+
     @SuppressLint("SetTextI18n")
     private void operationAdd() {
         sign = "+";
-        value2.append(value1);
-        value1.delete(0,value1.length());
+        changeValues();
     }
 
     @SuppressLint("SetTextI18n")
     private void operationSubtract() {
         sign = "-";
-        value2.append(value1);
-        value1.delete(0,value1.length());
+        changeValues();
     }
 
     @SuppressLint("SetTextI18n")
     private void operationMultiply() {
         sign = "*";
-        value2.append(value1);
-        value1.delete(0,value1.length());
+        changeValues();
     }
 
     @SuppressLint("SetTextI18n")
     private void operationDivide() {
         sign = "/";
-        value2.append(value1);
-        value1.delete(0,value1.length());
+        changeValues();
+    }
+
+    private void operationDot() {
+        if (!hasDot) {
+            if (value1.length() == 0) {
+                value1.append("0.");
+            } else {
+                value1.append(".");
+            }
+            hasDot = true;
+        }
     }
 
     private void operationEqual() {
-        double num1 = Double.parseDouble(String.valueOf(value1));
-        double num2 = Double.parseDouble(String.valueOf(value2));
-        double result = num1 + num2;
+        double num1 = Double.parseDouble(String.valueOf(value2));
+        double num2 = Double.parseDouble(String.valueOf(value1));
+        switch (sign) {
+            default:
+                break;
+            case "+":
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+            case "*":
+                result = num1 * num2;
+                break;
+            case "/":
+                result = num1 / num2;
+                break;
+        }
         binding.textView.setText(String.valueOf(result));
         value1.delete(0,value1.length());
         value2.delete(0,value2.length());
