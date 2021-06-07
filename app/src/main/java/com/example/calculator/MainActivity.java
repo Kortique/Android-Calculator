@@ -1,11 +1,16 @@
 package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import com.example.calculator.databinding.ActivityMainBinding;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.calculator.databinding.ActivityMainBinding;
+import java.util.Objects;
+
+public class MainActivity extends AppCompatActivity implements Parcelable {
 
     private ActivityMainBinding binding;
     private StringBuilder value1 = new StringBuilder("");
@@ -14,12 +19,38 @@ public class MainActivity extends AppCompatActivity {
     private Double result;
     private boolean hasDot = false;
 
+    protected MainActivity(Parcel in) {
+        sign = in.readString();
+        if (in.readByte() == 0) {
+            result = null;
+        } else {
+            result = in.readDouble();
+        }
+        hasDot = in.readByte() != 0;
+    }
+
+    public static final Creator<MainActivity> CREATOR = new Creator<MainActivity>() {
+        @Override
+        public MainActivity createFromParcel(Parcel in) {
+            return new MainActivity(in);
+        }
+
+        @Override
+        public MainActivity[] newArray(int size) {
+            return new MainActivity[size];
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Objects.requireNonNull(getSupportActionBar()).hide();
+        initButton();
+    }
 
+    private void initButton() {
         binding.button0.setOnClickListener(v -> setField("0"));
         binding.button1.setOnClickListener(v -> setField("1"));
         binding.button2.setOnClickListener(v -> setField("2"));
@@ -39,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
         binding.buttonClear.setOnClickListener(v -> operationClear());
         binding.buttonErase.setOnClickListener(v -> operationErase());
         binding.buttonReverse.setOnClickListener(v -> operationReverse());
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle instanceState) {
+        super.onSaveInstanceState(instanceState);
+        instanceState.putParcelable(getString());
     }
 
     @SuppressLint("SetTextI18n")
@@ -127,5 +164,24 @@ public class MainActivity extends AppCompatActivity {
             int intValue = (int)(Math.round(result));
             binding.textView.setText(String.valueOf(intValue));
         } else binding.textView.setText(String.valueOf(result));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(sign);
+        if (result == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(result);
+        }
+        dest.writeByte((byte) (hasDot ? 1 : 0));
+        dest.writeValue(value1);
+        dest.writeValue(value2);
     }
 }

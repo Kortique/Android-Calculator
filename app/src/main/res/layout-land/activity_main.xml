@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/image"
     android:orientation="horizontal"
+    android:theme="@android:style/Theme.Black.NoTitleBar"
     app:layout_constraintHorizontal_weight="1"
     tools:context=".MainActivity">
 
@@ -358,7 +359,7 @@
         android:id="@+id/textView"
         style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@color/purple_500"
         android:singleLine="false"
         android:textAlignment="textEnd"
@@ -375,7 +376,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="10dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontalCenter"
@@ -389,21 +390,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="20dp" />
+        app:layout_constraintGuide_end="10dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVerticalStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="180dp" />
+        app:layout_constraintGuide_begin="200dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVerticalEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="180dp" />
+        app:layout_constraintGuide_end="200dp" />
 
     <TextView
         android:id="@+id/textView2"
