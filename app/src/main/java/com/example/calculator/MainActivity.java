@@ -1,7 +1,9 @@
 package com.example.calculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
 import com.example.calculator.databinding.ActivityMainBinding;
 import java.util.Objects;
 
@@ -9,6 +11,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private Arithmetic arithmetic;
+    private final static String PARAMETERS = "Parameters";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,18 @@ public class MainActivity extends AppCompatActivity {
         binding.buttonClear.setOnClickListener(v -> arithmetic.operationClear());
         binding.buttonErase.setOnClickListener(v -> arithmetic.operationErase());
         binding.buttonReverse.setOnClickListener(v -> arithmetic.operationReverse());
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle instanceState) {
+        super.onSaveInstanceState(instanceState);
+        instanceState.putParcelable(PARAMETERS, Parameters.CREATOR.createFromParcel());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
+        super.onRestoreInstanceState(instanceState);
+        counters = instanceState.getParcelable(PARAMETERS);
     }
 
     protected void printResult(String string) {

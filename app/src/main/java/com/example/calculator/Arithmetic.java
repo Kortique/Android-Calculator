@@ -1,7 +1,5 @@
 package com.example.calculator;
 
-import android.annotation.SuppressLint;
-
 public class Arithmetic {
 
     private StringBuilder value1 = new StringBuilder("");
@@ -10,15 +8,17 @@ public class Arithmetic {
     private Double result;
     private boolean hasDot = false;
     private MainActivity main;
+    private Parameters parameters;
 
     public void setMainActivity(MainActivity a) {
         main = a;
+        parameters = new Parameters();
     }
 
-    @SuppressLint("SetTextI18n")
     void setField(String symbol) {
         value1.append(symbol);
         main.printResult(value1.toString());
+        parameters.setValue1(value1);
     }
 
     void arithmeticOperation(String s) {
@@ -26,6 +26,9 @@ public class Arithmetic {
         sign = s;
         value2.append(value1);
         value1.delete(0, value1.length());
+        parameters.setHasDot(false);
+        parameters.setValue1(value1);
+        parameters.setValue2(value2);
     }
 
     void operationDot() {
@@ -36,6 +39,7 @@ public class Arithmetic {
                 value1.append(".");
             }
             hasDot = true;
+            parameters.setHasDot(true);
         }
     }
 
@@ -43,25 +47,33 @@ public class Arithmetic {
         hasDot = false;
         clearValue();
         main.printResult("");
+        new Parameters();
     }
 
     void operationErase() {
         if (value1.length() != 0) {
-            if (value1.charAt(value1.length() - 1) == '.') hasDot = false;
+            if (value1.charAt(value1.length() - 1) == '.') {
+                hasDot = false;
+                parameters.setHasDot(false);
+            }
             value1.deleteCharAt(value1.length() - 1);
             main.printResult(value1.toString());
+            parameters.setValue1(value1);
         }
     }
 
     private void clearValue() {
         value1.delete(0, value1.length());
         value2.delete(0, value2.length());
+        parameters.setValue1(value1);
+        parameters.setValue1(value2);
     }
 
     void operationReverse() {
         if (value1.charAt(0) != '-') value1.insert(0, '-');
         else if (value1.charAt(0) == '-') value1.deleteCharAt(0);
         main.printResult(value1.toString());
+        parameters.setValue1(value1);
     }
 
     void operationEqual() {
@@ -88,6 +100,8 @@ public class Arithmetic {
             result();
             clearValue();
             value2.append(result);
+            new Parameters();
+            parameters.setResult(result);
         }
     }
 
