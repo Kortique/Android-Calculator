@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         calculator = savedInstanceState.getParcelable(DATA);
+        calculator.setMainActivity(this);
         restorePrintResult();
     }
 
