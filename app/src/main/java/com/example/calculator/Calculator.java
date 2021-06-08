@@ -41,15 +41,15 @@ public class Calculator implements Parcelable {
         hasDot = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<Parameters> CREATOR = new Creator<Parameters>() {
+    public static final Parcelable.Creator<Calculator> CREATOR = new Creator<Calculator>() {
         @Override
-        public Parameters createFromParcel(Parcel in) {
-            return new Parameters(in);
+        public Calculator createFromParcel(Parcel in) {
+            return new Calculator(in);
         }
 
         @Override
-        public Parameters[] newArray(int size) {
-            return new Parameters[size];
+        public Calculator[] newArray(int size) {
+            return new Calculator[size];
         }
     };
 
@@ -80,7 +80,6 @@ public class Calculator implements Parcelable {
         hasDot = false;
         clearValue();
         main.printResult("");
-        new Parameters();
     }
 
     void operationErase() {
@@ -98,10 +97,10 @@ public class Calculator implements Parcelable {
         value2.delete(0, value2.length());
     }
 
-    void operationReverse() {
-        if (value1.charAt(0) != '-') value1.insert(0, '-');
-        else if (value1.charAt(0) == '-') value1.deleteCharAt(0);
-        main.printResult(value1.toString());
+    void operationReverse () {
+            if (value1.charAt(0) != '-') value1.insert(0, '-');
+            else if (value1.charAt(0) == '-') value1.deleteCharAt(0);
+            main.printResult(value1.toString());
     }
 
     void operationEqual() {
@@ -128,11 +127,10 @@ public class Calculator implements Parcelable {
             result();
             clearValue();
             value2.append(result);
-            new Parameters();
         }
     }
 
-    private void result() {
+    protected void result() {
         if (result % 1 == 0) {
             int intValue = (int) (Math.round(result));
             main.printResult(String.valueOf(intValue));

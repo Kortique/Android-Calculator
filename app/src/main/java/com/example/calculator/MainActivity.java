@@ -48,18 +48,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle instanceState) {
-        super.onSaveInstanceState(instanceState);
-        instanceState.putParcelable(DATA, calculator);
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putParcelable(DATA, calculator);
     }
 
-    @SuppressLint("SetTextI18n")
+
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
-        super.onRestoreInstanceState(instanceState);
-        calculator = instanceState.getParcelable(DATA);
-        if (calculator.getResult() == 0.0) binding.textView.setText(calculator.getValue1());
-        else binding.textView.setText(calculator.getResult().toString());
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        calculator = savedInstanceState.getParcelable(DATA);
+        restorePrintResult();
     }
 
     @Override
@@ -70,5 +69,11 @@ public class MainActivity extends AppCompatActivity {
 
     protected void printResult(String string) {
         binding.textView.setText(string);
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void restorePrintResult() {
+        if (calculator.getResult() == 0.0) binding.textView.setText(calculator.getValue1());
+        else binding.textView.setText(calculator.getResult().toString());
     }
 }
