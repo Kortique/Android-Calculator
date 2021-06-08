@@ -1,24 +1,61 @@
 package com.example.calculator;
 
-public class Arithmetic {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Calculator implements Parcelable {
 
     private StringBuilder value1 = new StringBuilder("");
     private StringBuilder value2 = new StringBuilder("");
+    private Double result = 0.0;
     private String sign;
-    private Double result;
     private boolean hasDot = false;
     private MainActivity main;
-    private Parameters parameters;
+
+    public Double getResult() {
+        return result;
+    }
+
+    public StringBuilder getValue1() {
+        return value1;
+    }
+
+    public Calculator() {
+    }
 
     public void setMainActivity(MainActivity a) {
         main = a;
-        parameters = new Parameters();
     }
+
+    public void removeActivity() {
+        main = null;
+    }
+
+    protected Calculator(Parcel in) {
+        if (in.readByte() == 0) result = null;
+        else result = in.readDouble();
+        if (in.readByte() == 0) value1 = null;
+        else value1 = (StringBuilder) in.readValue(getClass().getClassLoader());
+        if (in.readByte() == 0) value2 = null;
+        else value2 = (StringBuilder) in.readValue(getClass().getClassLoader());
+        hasDot = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<Parameters> CREATOR = new Creator<Parameters>() {
+        @Override
+        public Parameters createFromParcel(Parcel in) {
+            return new Parameters(in);
+        }
+
+        @Override
+        public Parameters[] newArray(int size) {
+            return new Parameters[size];
+        }
+    };
 
     void setField(String symbol) {
         value1.append(symbol);
         main.printResult(value1.toString());
-        parameters.setValue1(value1);
     }
 
     void arithmeticOperation(String s) {
@@ -26,9 +63,6 @@ public class Arithmetic {
         sign = s;
         value2.append(value1);
         value1.delete(0, value1.length());
-        parameters.setHasDot(false);
-        parameters.setValue1(value1);
-        parameters.setValue2(value2);
     }
 
     void operationDot() {
@@ -39,7 +73,6 @@ public class Arithmetic {
                 value1.append(".");
             }
             hasDot = true;
-            parameters.setHasDot(true);
         }
     }
 
@@ -54,26 +87,21 @@ public class Arithmetic {
         if (value1.length() != 0) {
             if (value1.charAt(value1.length() - 1) == '.') {
                 hasDot = false;
-                parameters.setHasDot(false);
             }
             value1.deleteCharAt(value1.length() - 1);
             main.printResult(value1.toString());
-            parameters.setValue1(value1);
         }
     }
 
     private void clearValue() {
         value1.delete(0, value1.length());
         value2.delete(0, value2.length());
-        parameters.setValue1(value1);
-        parameters.setValue1(value2);
     }
 
     void operationReverse() {
         if (value1.charAt(0) != '-') value1.insert(0, '-');
         else if (value1.charAt(0) == '-') value1.deleteCharAt(0);
         main.printResult(value1.toString());
-        parameters.setValue1(value1);
     }
 
     void operationEqual() {
@@ -101,7 +129,6 @@ public class Arithmetic {
             clearValue();
             value2.append(result);
             new Parameters();
-            parameters.setResult(result);
         }
     }
 
@@ -110,5 +137,30 @@ public class Arithmetic {
             int intValue = (int) (Math.round(result));
             main.printResult(String.valueOf(intValue));
         } else main.printResult(String.valueOf(result));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (result == null) dest.writeByte((byte) 0);
+        else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(result);
+        }
+        if (value1 == null) dest.writeByte((byte) 0);
+        else {
+            dest.writeByte((byte) 1);
+            dest.writeValue(value1);
+        }
+        if (value2 == null) dest.writeByte((byte) 0);
+        else {
+            dest.writeByte((byte) 1);
+            dest.writeValue(value2);
+        }
+        dest.writeByte((byte) (hasDot ? 1 : 0));
     }
 }
