@@ -59,6 +59,7 @@ public class Calculator implements Parcelable {
     }
 
     void arithmeticOperation(String s) {
+        if (value2.length() != 0) operationEqual();
         hasDot = false;
         sign = s;
         value2.append(value1);
@@ -84,9 +85,7 @@ public class Calculator implements Parcelable {
 
     void operationErase() {
         if (value1.length() != 0) {
-            if (value1.charAt(value1.length() - 1) == '.') {
-                hasDot = false;
-            }
+            if (value1.charAt(value1.length() - 1) == '.') hasDot = false;
             value1.deleteCharAt(value1.length() - 1);
             main.printResult(value1.toString());
         }
@@ -97,10 +96,14 @@ public class Calculator implements Parcelable {
         value2.delete(0, value2.length());
     }
 
-    void operationReverse () {
+    void operationReverse() {
+        if (value1.length() != 0) {
             if (value1.charAt(0) != '-') value1.insert(0, '-');
             else if (value1.charAt(0) == '-') value1.deleteCharAt(0);
-            main.printResult(value1.toString());
+        } else {
+            value1.insert(0, '-');
+        }
+        main.printResult(value1.toString());
     }
 
     void operationEqual() {
@@ -123,10 +126,11 @@ public class Calculator implements Parcelable {
                     result = num1 / num2;
                     break;
             }
-            hasDot = false;
             result();
             clearValue();
             value2.append(result);
+            hasDot = false;
+            sign = null;
         }
     }
 
