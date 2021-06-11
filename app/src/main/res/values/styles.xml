@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="calc_day_style">
+    <style name="button_style">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:backgroundTint">@color/purple_200</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/selector_numbtn_bg</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">@dimen/button_text</item>
+    </style>
+
+    <style name="button_style.function">
+        <item name="android:background">@drawable/selector_funcbtn_bg</item>
+    </style>
+
+    <style name="button_style.arithmetic">
+        <item name="android:background">@drawable/selector_arithbtn_bg</item>
+    </style>
+
+    <style name="layout_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">4</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 </resources>
