@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="border_margin">50dp</dimen>
+    <dimen name="button_margin">0dp</dimen>
+    <dimen name="button_text">30sp</dimen>
+</resources>

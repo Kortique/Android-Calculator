@@ -12,22 +12,22 @@ public class Calculator implements Parcelable {
     private boolean hasDot = false;
     private MainActivity main;
 
-    public Double getResult() {
+    protected Double getResult() {
         return result;
     }
 
-    public StringBuilder getValue1() {
+    protected StringBuilder getValue1() {
         return value1;
     }
 
-    public Calculator() {
+    protected Calculator() {
     }
 
-    public void setMainActivity(MainActivity a) {
+    protected void setMainActivity(MainActivity a) {
         main = a;
     }
 
-    public void removeActivity() {
+    protected void removeActivity() {
         main = null;
     }
 
@@ -41,7 +41,7 @@ public class Calculator implements Parcelable {
         hasDot = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<Calculator> CREATOR = new Creator<Calculator>() {
+    protected static final Parcelable.Creator<Calculator> CREATOR = new Creator<Calculator>() {
         @Override
         public Calculator createFromParcel(Parcel in) {
             return new Calculator(in);
@@ -53,12 +53,16 @@ public class Calculator implements Parcelable {
         }
     };
 
-    void setField(String symbol) {
+    protected void setField(String symbol) {
         value1.append(symbol);
-        main.printResult(value1.toString());
+        printValue(value1);
     }
 
-    void arithmeticOperation(String s) {
+    private void printValue(StringBuilder numbers) {
+        main.printResult(numbers.toString());
+    }
+
+    protected void arithmeticOperation(String s) {
         if (value2.length() != 0) operationEqual();
         hasDot = false;
         sign = s;
@@ -66,7 +70,7 @@ public class Calculator implements Parcelable {
         value1.delete(0, value1.length());
     }
 
-    void operationDot() {
+    protected void operationDot() {
         if (!hasDot) {
             if (value1.length() == 0) {
                 value1.append("0.");
@@ -77,17 +81,17 @@ public class Calculator implements Parcelable {
         }
     }
 
-    void operationClear() {
+    protected void operationClear() {
         hasDot = false;
         clearValue();
-        main.printResult("");
+        printValue(value1);
     }
 
-    void operationErase() {
+    protected void operationErase() {
         if (value1.length() != 0) {
             if (value1.charAt(value1.length() - 1) == '.') hasDot = false;
             value1.deleteCharAt(value1.length() - 1);
-            main.printResult(value1.toString());
+            printValue(value1);
         }
     }
 
@@ -96,17 +100,17 @@ public class Calculator implements Parcelable {
         value2.delete(0, value2.length());
     }
 
-    void operationReverse() {
+    protected void operationReverse() {
         if (value1.length() != 0) {
             if (value1.charAt(0) != '-') value1.insert(0, '-');
             else if (value1.charAt(0) == '-') value1.deleteCharAt(0);
         } else {
             value1.insert(0, '-');
         }
-        main.printResult(value1.toString());
+        printValue(value1);
     }
 
-    void operationEqual() {
+    protected void operationEqual() {
         if (sign != null) {
             double num1 = Double.parseDouble(String.valueOf(value2));
             double num2 = Double.parseDouble(String.valueOf(value1));
@@ -126,7 +130,7 @@ public class Calculator implements Parcelable {
                     result = num1 / num2;
                     break;
             }
-            result();
+            printResult();
             clearValue();
             value2.append(result);
             hasDot = false;
@@ -134,7 +138,7 @@ public class Calculator implements Parcelable {
         }
     }
 
-    protected void result() {
+    protected void printResult() {
         if (result % 1 == 0) {
             int intValue = (int) (Math.round(result));
             main.printResult(String.valueOf(intValue));

@@ -12,13 +12,7 @@
 
     <Button
         android:id="@+id/button1"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:backgroundTint="@color/purple_200"
-        android:gravity="center"
         android:text="@string/_1"
-        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonDot"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -26,17 +20,12 @@
         app:layout_constraintStart_toStartOf="@id/guidelineVerticalStart"
         app:layout_constraintTop_toBottomOf="@id/button4"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintVertical_weight="1"
+        style="@style/calc_day_style" />
 
     <Button
         android:id="@+id/button2"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:backgroundTint="@color/purple_200"
-        android:gravity="center"
         android:text="@string/_2"
-        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonDot"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -44,11 +33,11 @@
         app:layout_constraintStart_toEndOf="@id/button1"
         app:layout_constraintTop_toBottomOf="@id/button5"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintVertical_weight="1"
+        style="@style/calc_day_style" />
 
     <Button
         android:id="@+id/button3"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_200"
@@ -66,7 +55,6 @@
 
     <Button
         android:id="@+id/button4"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_200"
@@ -84,7 +72,6 @@
 
     <Button
         android:id="@+id/button5"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_200"
@@ -102,7 +89,6 @@
 
     <Button
         android:id="@+id/button6"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_200"
@@ -120,7 +106,6 @@
 
     <Button
         android:id="@+id/button7"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_200"
@@ -138,7 +123,6 @@
 
     <Button
         android:id="@+id/button8"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_200"
@@ -156,7 +140,6 @@
 
     <Button
         android:id="@+id/button9"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_200"
@@ -174,7 +157,6 @@
 
     <Button
         android:id="@+id/buttonClear"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -192,7 +174,6 @@
 
     <Button
         android:id="@+id/buttonReverse"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -210,7 +191,6 @@
 
     <Button
         android:id="@+id/buttonErase"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -228,7 +208,6 @@
 
     <Button
         android:id="@+id/buttonPlus"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -246,7 +225,6 @@
 
     <Button
         android:id="@+id/buttonMinus"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -264,7 +242,6 @@
 
     <Button
         android:id="@+id/buttonMultiply"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -282,7 +259,6 @@
 
     <Button
         android:id="@+id/buttonDiv"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -300,7 +276,6 @@
 
     <Button
         android:id="@+id/buttonEqual"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -318,7 +293,6 @@
 
     <Button
         android:id="@+id/buttonDot"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -337,7 +311,6 @@
 
     <Button
         android:id="@+id/button0"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/purple_500"
@@ -356,7 +329,6 @@
 
     <TextView
         android:id="@+id/textView"
-        style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="0dp"
         android:layout_height="76dp"
         android:background="@color/purple_500"
@@ -377,7 +349,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="50dp" />
+        app:layout_constraintGuide_begin="@dimen/border_margin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontalCenter"
@@ -391,21 +363,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="50dp" />
+        app:layout_constraintGuide_end="@dimen/border_margin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVerticalStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="50dp" />
+        app:layout_constraintGuide_begin="@dimen/border_margin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVerticalEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="50dp" />
+        app:layout_constraintGuide_end="@dimen/border_margin" />
 
     <TextView
         android:id="@+id/textView2"
