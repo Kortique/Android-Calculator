@@ -4,117 +4,125 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:weightSum="100">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/textview_height">
+        android:layout_weight="80"
+        android:layout_height="0dp">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="end|bottom"
+            android:gravity="end|center"
             android:textSize="@dimen/textview_text"
             android:textStyle="bold"
-            android:layout_weight="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:maxLength="13"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
             android:orientation="horizontal"
-            android:background="#57585B"/>
+            android:background="@color/mine_shaft"/>
     </LinearLayout>
 
     <LinearLayout
-        style="@style/layout_style">
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style.function"
+        style="@style/Theme.Calculator.LayoutStyle">
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle.Function"
             android:id="@+id/buttonClear"
             android:text="@string/clear"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style.function"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle.Function"
             android:id="@+id/buttonReverse"
             android:text="@string/reverse"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style.function"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle.Function"
             android:id="@+id/buttonErase"
-            android:text="@string/erase"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style.arithmetic"
+            android:src="@mipmap/ic_backspace_white_24dp"
+            android:scaleType="centerInside"/>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle.Function"
             android:id="@+id/buttonDiv"
             android:text="@string/div"/>
     </LinearLayout>
 
     <LinearLayout
-        style="@style/layout_style">
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
+        style="@style/Theme.Calculator.LayoutStyle">
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
             android:id="@+id/button7"
             android:text="@string/_7"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
             android:id="@+id/button8"
             android:text="@string/_8"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
             android:id="@+id/button9"
             android:text="@string/_9"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style.arithmetic"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle.Function"
             android:id="@+id/buttonMultiply"
             android:text="@string/multi"/>
+
     </LinearLayout>
 
     <LinearLayout
-        style="@style/layout_style">
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
+        style="@style/Theme.Calculator.LayoutStyle">
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
             android:id="@+id/button4"
             android:text="@string/_4"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
             android:id="@+id/button5"
             android:text="@string/_5"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
             android:id="@+id/button6"
             android:text="@string/_6"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style.arithmetic"
-            android:id="@+id/buttonPlus"
-            android:text="@string/sum"/>
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/layout_style">
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
-            android:id="@+id/button1"
-            android:text="@string/_1"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
-            android:id="@+id/button2"
-            android:text="@string/_2"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
-            android:id="@+id/button3"
-            android:text="@string/_3"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style.arithmetic"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle.Function"
             android:id="@+id/buttonMinus"
             android:text="@string/minus"/>
     </LinearLayout>
 
     <LinearLayout
-        style="@style/layout_style">
-        <androidx.appcompat.widget.AppCompatButton
+        style="@style/Theme.Calculator.LayoutStyle">
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
+            android:id="@+id/button1"
+            android:text="@string/_1"/>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
+            android:id="@+id/button2"
+            android:text="@string/_2"/>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
+            android:id="@+id/button3"
+            android:text="@string/_3"/>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle.Function"
+            android:id="@+id/buttonPlus"
+            android:text="@string/sum"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/Theme.Calculator.LayoutStyle">
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button0"
-            style="@style/button_style"
+            style="@style/Widget.Calculator.ButtonStyle"
             android:text="@string/_0"
             android:layout_weight="2"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle"
             android:id="@+id/buttonDot"
             android:text="@string/dot"/>
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/button_style.arithmetic"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Calculator.ButtonStyle.Equal"
             android:id="@+id/buttonEqual"
             android:text="@string/equal"/>
     </LinearLayout>
