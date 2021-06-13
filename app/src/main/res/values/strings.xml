@@ -13,10 +13,10 @@
     <string name="sum">+</string>
     <string name="minus">-</string>
     <string name="multi">*</string>
-    <string name="div">/</string>
+    <string name="div">÷</string>
     <string name="equal">=</string>
     <string name="dot">.</string>
-    <string name="clear">C</string>
+    <string name="clear">AC</string>
     <string name="reverse">+/-</string>
     <string name="erase">Del</string>
 </resources>

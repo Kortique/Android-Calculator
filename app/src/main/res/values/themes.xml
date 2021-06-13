@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Calculator" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Calculator" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,4 +13,51 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Calculator.ButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/button_text</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/selector_numbtn_bg</item>
+    </style>
+
+    <style name="Theme.Calculator.ButtonStyle.Function">
+        <item name="android:background">@drawable/selector_funcbtn_bg</item>
+    </style>
+
+    <style name="Theme.Calculator.ButtonStyle.Function.Erase">
+        <item name="android:background">@drawable/selector_funcbtn_bg</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:src">@mipmap/ic_backspace_black_24dp</item>
+    </style>
+
+    <style name="Theme.Calculator.ButtonStyle.Equal">
+        <item name="android:background">@drawable/selector_equalbtn_bg</item>
+    </style>
+
+    <style name="Theme.Calculator.LayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Theme.Calculator.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">end|center</item>
+        <item name="android:textSize">@dimen/textview_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLength">11</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/back_day</item>
+    </style>
+
 </resources>
