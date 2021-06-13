@@ -20,28 +20,6 @@
     <LinearLayout style="@style/Theme.Calculator.LayoutStyle">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonClear"
-            style="@style/Theme.Calculator.ButtonStyle.Function"
-            android:text="@string/clear" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonReverse"
-            style="@style/Theme.Calculator.ButtonStyle.Function"
-            android:text="@string/reverse" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/buttonErase"
-            style="@style/Theme.Calculator.ButtonStyle.Function.Erase" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonDiv"
-            style="@style/Theme.Calculator.ButtonStyle.Function"
-            android:text="@string/div" />
-    </LinearLayout>
-
-    <LinearLayout style="@style/Theme.Calculator.LayoutStyle">
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button7"
             style="@style/Theme.Calculator.ButtonStyle"
             android:text="@string/_7" />
@@ -57,9 +35,15 @@
             android:text="@string/_9" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonMultiply"
+            android:id="@+id/buttonDiv"
             style="@style/Theme.Calculator.ButtonStyle.Function"
-            android:text="@string/multi" />
+            android:text="@string/div" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonClear"
+            style="@style/Theme.Calculator.ButtonStyle.Function"
+            android:text="@string/clear" />
 
     </LinearLayout>
 
@@ -81,9 +65,15 @@
             android:text="@string/_6" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonMinus"
+            android:id="@+id/buttonMultiply"
             style="@style/Theme.Calculator.ButtonStyle.Function"
-            android:text="@string/minus" />
+            android:text="@string/multi" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonReverse"
+            style="@style/Theme.Calculator.ButtonStyle.Function"
+            android:text="@string/reverse" />
+
     </LinearLayout>
 
     <LinearLayout style="@style/Theme.Calculator.LayoutStyle">
@@ -104,9 +94,15 @@
             android:text="@string/_3" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonPlus"
+            android:id="@+id/buttonMinus"
             style="@style/Theme.Calculator.ButtonStyle.Function"
-            android:text="@string/sum" />
+            android:text="@string/minus" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/buttonErase"
+            style="@style/Theme.Calculator.ButtonStyle.Function.Erase" />
+
+
     </LinearLayout>
 
     <LinearLayout style="@style/Theme.Calculator.LayoutStyle">
@@ -121,6 +117,11 @@
             android:id="@+id/buttonDot"
             style="@style/Theme.Calculator.ButtonStyle"
             android:text="@string/dot" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonPlus"
+            style="@style/Theme.Calculator.ButtonStyle.Function"
+            android:text="@string/sum" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonEqual"
