@@ -61,11 +61,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
     }
 
     private void initTheme() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
-//            themeSystem.visibility = View.VISIBLE
-//        } else {
-//            themeSystem.visibility = View.GONE
-//        }
         switch (getSavedTheme()) {
             case THEME_LIGHT:
             case THEME_UNDEFINED:

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-
 public class SettingActivity extends AppCompatActivity implements
         CompoundButton.OnCheckedChangeListener, Constants {
 
@@ -26,6 +25,7 @@ public class SettingActivity extends AppCompatActivity implements
     private void initWidgets(Switch switchTheme) {
         if (switchTheme != null) {
             switchTheme.setOnCheckedChangeListener(this);
+            switchTheme.setChecked(getThemeSwitch());
         }
     }
 
@@ -36,15 +36,11 @@ public class SettingActivity extends AppCompatActivity implements
         } else {
             myTheme.edit().putInt(KEY_THEME, THEME_LIGHT).apply();
         }
+        saveThemeSwitch(isChecked);
         initTheme();
     }
 
     private void initTheme() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
-//            themeSystem.visibility = View.VISIBLE
-//        } else {
-//            themeSystem.visibility = View.GONE
-//        }
         switch (getSavedTheme()) {
             case THEME_LIGHT:
                 setTheme(AppCompatDelegate.MODE_NIGHT_NO, THEME_LIGHT);
@@ -58,6 +54,10 @@ public class SettingActivity extends AppCompatActivity implements
         }
     }
 
+    private boolean getThemeSwitch() {
+        return myTheme.getBoolean(String.valueOf(KEY_SWITCH), false);
+    }
+
     private int getSavedTheme() {
         return myTheme.getInt(KEY_THEME, THEME_UNDEFINED);
     }
@@ -69,5 +69,9 @@ public class SettingActivity extends AppCompatActivity implements
 
     private static void saveTheme(int theme) {
         myTheme.edit().putInt(KEY_THEME, theme).apply();
+    }
+
+    private void saveThemeSwitch(boolean isChecked) {
+        myTheme.edit().putBoolean(String.valueOf(KEY_SWITCH), isChecked).apply();
     }
 }
