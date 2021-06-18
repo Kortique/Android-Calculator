@@ -18,5 +18,7 @@
     <string name="dot">.</string>
     <string name="clear">AC</string>
     <string name="reverse">+/-</string>
-    <string name="erase">Del</string>
+    <string name="setting_text_title">Settings</string>
+    <string name="switch_day_night">Use Dark Theme</string>
+    <string name="setting_apply">Apply</string>
 </resources>

@@ -3,6 +3,8 @@ package com.example.calculator;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 public class Calculator implements Parcelable {
 
     private StringBuilder value1 = new StringBuilder("");
@@ -64,10 +66,10 @@ public class Calculator implements Parcelable {
 
     protected void arithmeticOperation(String s) {
         if (value2.length() != 0) operationEqual();
-        hasDot = false;
-        sign = s;
-        value2.append(value1);
-        value1.delete(0, value1.length());
+            hasDot = false;
+            sign = s;
+            value2.append(value1);
+            value1.delete(0, value1.length());
     }
 
     protected void operationDot() {
@@ -111,7 +113,7 @@ public class Calculator implements Parcelable {
     }
 
     protected void operationEqual() {
-        if (sign != null) {
+        if ((sign != null) && (value1.length() != 0)) {
             double num1 = Double.parseDouble(String.valueOf(value2));
             double num2 = Double.parseDouble(String.valueOf(value1));
             switch (sign) {

@@ -2,26 +2,34 @@ package com.example.calculator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import com.example.calculator.databinding.ActivityMainBinding;
+
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+import android.content.Intent;
+
+public class MainActivity extends AppCompatActivity implements Constants {
 
     private ActivityMainBinding binding;
     private Calculator calculator;
-    private final static String DATA = "data";
+    private static SharedPreferences myTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        myTheme = getSharedPreferences(THEME, MODE_PRIVATE);
         calculator = new Calculator();
         calculator.setMainActivity(this);
         initButton();
+        initTheme();
     }
 
     private void initButton() {
@@ -44,6 +52,33 @@ public class MainActivity extends AppCompatActivity {
         binding.buttonClear.setOnClickListener(v -> calculator.operationClear());
         binding.buttonErase.setOnClickListener(v -> calculator.operationErase());
         binding.buttonReverse.setOnClickListener(v -> calculator.operationReverse());
+        binding.buttonSetting.setOnClickListener(v -> startSettingActivity());
+    }
+
+    private void startSettingActivity() {
+        Intent intent = new Intent(this, SettingActivity.class);
+        startActivity(intent);
+    }
+
+    private void initTheme() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+//            themeSystem.visibility = View.VISIBLE
+//        } else {
+//            themeSystem.visibility = View.GONE
+//        }
+        switch (getSavedTheme()) {
+            case THEME_LIGHT:
+            case THEME_UNDEFINED:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case THEME_DARK:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+        }
+    }
+
+    private int getSavedTheme() {
+        return myTheme.getInt(KEY_THEME, THEME_UNDEFINED);
     }
 
     @Override
