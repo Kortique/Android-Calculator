@@ -3,14 +3,14 @@ package com.example.calculator;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-
 public class Calculator implements Parcelable {
 
     private StringBuilder value1 = new StringBuilder("");
     private StringBuilder value2 = new StringBuilder("");
+    private StringBuilder log = new StringBuilder("");
     private Double result = 0.0;
     private String sign;
+    private String currentSign;
     private boolean hasDot = false;
     private MainActivity main;
 
@@ -64,12 +64,82 @@ public class Calculator implements Parcelable {
         main.printResult(numbers.toString());
     }
 
-    protected void arithmeticOperation(String s) {
-        if (value2.length() != 0) operationEqual();
+    protected void operationArithmetic(String s) {
+        if (value1.length() != 0) {
             hasDot = false;
-            sign = s;
-            value2.append(value1);
+            result = 0.0;
+
+            getArithmeticResult();
+            setValue2();
+            if ((s.equals("=")) && (value2.length()) != 0) {
+                operationEqual();
+            }
+
+            currentSign = s;
             value1.delete(0, value1.length());
+
+
+//            log.append(result);
+
+        }
+    }
+
+    private void getArithmeticResult() {
+        if (value2.length() != 0) {
+            sign = currentSign;
+            arithmetic();
+        }
+    }
+
+    private void arithmetic() {
+        double num1 = Double.parseDouble(String.valueOf(value2));
+        double num2 = Double.parseDouble(String.valueOf(value1));
+        switch (sign) {
+            default:
+                break;
+            case "+":
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+            case "*":
+                result = num1 * num2;
+                break;
+            case "/":
+                result = num1 / num2;
+                break;
+        }
+        value2.delete(0, value2.length());
+        printResult();
+    }
+
+    protected void printResult() {
+        if (result % 1 == 0) {
+            int intValue = (int) (Math.round(result));
+            main.printResult(String.valueOf(intValue));
+        } else main.printResult(String.valueOf(result));
+    }
+
+    private void setValue2() {
+        if (result == 0.0) {
+            value2.append(value1);
+        } else {
+            value2.append(result);
+        }
+    }
+
+    protected void operationEqual() {
+        printResult();
+        setDefault();
+    }
+
+    private void setDefault() {
+        value1.delete(0, value1.length());
+        value2.delete(0, value2.length());
+        hasDot = false;
+        sign = null;
+        currentSign = null;
     }
 
     protected void operationDot() {
@@ -84,8 +154,7 @@ public class Calculator implements Parcelable {
     }
 
     protected void operationClear() {
-        hasDot = false;
-        clearValue();
+        setDefault();
         printValue(value1);
     }
 
@@ -95,11 +164,6 @@ public class Calculator implements Parcelable {
             value1.deleteCharAt(value1.length() - 1);
             printValue(value1);
         }
-    }
-
-    private void clearValue() {
-        value1.delete(0, value1.length());
-        value2.delete(0, value2.length());
     }
 
     protected void operationReverse() {
@@ -112,41 +176,6 @@ public class Calculator implements Parcelable {
         printValue(value1);
     }
 
-    protected void operationEqual() {
-        if ((sign != null) && (value1.length() != 0)) {
-            double num1 = Double.parseDouble(String.valueOf(value2));
-            double num2 = Double.parseDouble(String.valueOf(value1));
-            switch (sign) {
-                default:
-                    break;
-                case "+":
-                    result = num1 + num2;
-                    break;
-                case "-":
-                    result = num1 - num2;
-                    break;
-                case "*":
-                    result = num1 * num2;
-                    break;
-                case "/":
-                    result = num1 / num2;
-                    break;
-            }
-            printResult();
-            clearValue();
-            value2.append(result);
-            hasDot = false;
-            sign = null;
-        }
-    }
-
-    protected void printResult() {
-        if (result % 1 == 0) {
-            int intValue = (int) (Math.round(result));
-            main.printResult(String.valueOf(intValue));
-        } else main.printResult(String.valueOf(result));
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -154,7 +183,7 @@ public class Calculator implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (result == null) dest.writeByte((byte) 0);
+        if (result == 0.0) dest.writeByte((byte) 0);
         else {
             dest.writeByte((byte) 1);
             dest.writeDouble(result);

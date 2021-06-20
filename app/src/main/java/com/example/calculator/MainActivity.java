@@ -10,8 +10,6 @@ import android.os.Bundle;
 
 import com.example.calculator.databinding.ActivityMainBinding;
 
-import java.util.Objects;
-
 import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity implements Constants {
@@ -43,11 +41,11 @@ public class MainActivity extends AppCompatActivity implements Constants {
         binding.button7.setOnClickListener(v -> calculator.setField("7"));
         binding.button8.setOnClickListener(v -> calculator.setField("8"));
         binding.button9.setOnClickListener(v -> calculator.setField("9"));
-        binding.buttonPlus.setOnClickListener(v -> calculator.arithmeticOperation("+"));
-        binding.buttonMinus.setOnClickListener(v -> calculator.arithmeticOperation("-"));
-        binding.buttonMultiply.setOnClickListener(v -> calculator.arithmeticOperation("*"));
-        binding.buttonDiv.setOnClickListener(v -> calculator.arithmeticOperation("/"));
-        binding.buttonEqual.setOnClickListener(v -> calculator.operationEqual());
+        binding.buttonPlus.setOnClickListener(v -> calculator.operationArithmetic("+"));
+        binding.buttonMinus.setOnClickListener(v -> calculator.operationArithmetic("-"));
+        binding.buttonMultiply.setOnClickListener(v -> calculator.operationArithmetic("*"));
+        binding.buttonDiv.setOnClickListener(v -> calculator.operationArithmetic("/"));
+        binding.buttonEqual.setOnClickListener(v -> calculator.operationArithmetic("="));
         binding.buttonDot.setOnClickListener(v -> calculator.operationDot());
         binding.buttonClear.setOnClickListener(v -> calculator.operationClear());
         binding.buttonErase.setOnClickListener(v -> calculator.operationErase());
