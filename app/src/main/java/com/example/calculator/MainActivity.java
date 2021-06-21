@@ -2,26 +2,32 @@ package com.example.calculator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import com.example.calculator.databinding.ActivityMainBinding;
-import java.util.Objects;
+import androidx.appcompat.app.AppCompatDelegate;
 
-public class MainActivity extends AppCompatActivity {
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
+import com.example.calculator.databinding.ActivityMainBinding;
+
+import android.content.Intent;
+
+public class MainActivity extends AppCompatActivity implements Constants {
 
     private ActivityMainBinding binding;
     private Calculator calculator;
-    private final static String DATA = "data";
+    private static SharedPreferences myTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        myTheme = getSharedPreferences(THEME, MODE_PRIVATE);
         calculator = new Calculator();
         calculator.setMainActivity(this);
         initButton();
+        initTheme();
     }
 
     private void initButton() {
@@ -35,15 +41,37 @@ public class MainActivity extends AppCompatActivity {
         binding.button7.setOnClickListener(v -> calculator.setField("7"));
         binding.button8.setOnClickListener(v -> calculator.setField("8"));
         binding.button9.setOnClickListener(v -> calculator.setField("9"));
-        binding.buttonPlus.setOnClickListener(v -> calculator.arithmeticOperation("+"));
-        binding.buttonMinus.setOnClickListener(v -> calculator.arithmeticOperation("-"));
-        binding.buttonMultiply.setOnClickListener(v -> calculator.arithmeticOperation("*"));
-        binding.buttonDiv.setOnClickListener(v -> calculator.arithmeticOperation("/"));
+        binding.buttonPlus.setOnClickListener(v -> calculator.operationArithmetic("+"));
+        binding.buttonMinus.setOnClickListener(v -> calculator.operationArithmetic("-"));
+        binding.buttonMultiply.setOnClickListener(v -> calculator.operationArithmetic("*"));
+        binding.buttonDiv.setOnClickListener(v -> calculator.operationArithmetic("/"));
         binding.buttonEqual.setOnClickListener(v -> calculator.operationEqual());
         binding.buttonDot.setOnClickListener(v -> calculator.operationDot());
         binding.buttonClear.setOnClickListener(v -> calculator.operationClear());
         binding.buttonErase.setOnClickListener(v -> calculator.operationErase());
         binding.buttonReverse.setOnClickListener(v -> calculator.operationReverse());
+        binding.buttonSetting.setOnClickListener(v -> startSettingActivity());
+    }
+
+    private void startSettingActivity() {
+        Intent intent = new Intent(this, SettingActivity.class);
+        startActivity(intent);
+    }
+
+    private void initTheme() {
+        switch (getSavedTheme()) {
+            case THEME_LIGHT:
+            case THEME_UNDEFINED:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case THEME_DARK:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+        }
+    }
+
+    private int getSavedTheme() {
+        return myTheme.getInt(KEY_THEME, THEME_UNDEFINED);
     }
 
     @Override
@@ -57,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         calculator = savedInstanceState.getParcelable(DATA);
         restorePrintResult();
+        restorePrintLog();
         calculator.setMainActivity(this);
     }
 
@@ -66,13 +95,21 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    protected void printResult(String string) {
+    protected void printResult(StringBuilder string) {
         binding.textView.setText(string);
     }
 
-    @SuppressLint("SetTextI18n")
-    protected void restorePrintResult() {
-        if (calculator.getResult() == 0.0) binding.textView.setText(calculator.getValue1());
-        else binding.textView.setText(calculator.getResult().toString());
+    protected void printLog(StringBuilder string) {
+        binding.textViewLog.setText(string);
+    }
+
+    private void restorePrintLog() {
+        if (calculator.getLog().length() != 0) binding.textViewLog.setText(calculator.getLog());
+        else binding.textViewLog.setText(calculator.getSavedLog());
+    }
+
+    private void restorePrintResult() {
+        if (calculator.getSavedResult().length() == 0) binding.textView.setText(calculator.getValue1());
+        else binding.textView.setText(calculator.getSavedResult());
     }
 }

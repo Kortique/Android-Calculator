@@ -2,6 +2,10 @@
 <resources>
     <dimen name="button_text">34sp</dimen>
     <dimen name="button_height">0dp</dimen>
-    <dimen name="textview_text">50sp</dimen>
-    <dimen name="textview_height">120dp</dimen>
+    <dimen name="textview_text_size">62sp</dimen>
+    <dimen name="textview_log_text_size">34sp</dimen>
+    <dimen name="setting_padding">16dp</dimen>
+    <dimen name="setting_title_text_size">32sp</dimen>
+    <dimen name="setting_option_text_size">20sp</dimen>
+    <dimen name="setting_space_size">16dp</dimen>
 </resources>
