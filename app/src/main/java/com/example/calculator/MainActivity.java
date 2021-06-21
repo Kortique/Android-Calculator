@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
         binding.buttonMinus.setOnClickListener(v -> calculator.operationArithmetic("-"));
         binding.buttonMultiply.setOnClickListener(v -> calculator.operationArithmetic("*"));
         binding.buttonDiv.setOnClickListener(v -> calculator.operationArithmetic("/"));
-        binding.buttonEqual.setOnClickListener(v -> calculator.operationArithmetic("="));
+        binding.buttonEqual.setOnClickListener(v -> calculator.operationEqual());
         binding.buttonDot.setOnClickListener(v -> calculator.operationDot());
         binding.buttonClear.setOnClickListener(v -> calculator.operationClear());
         binding.buttonErase.setOnClickListener(v -> calculator.operationErase());
@@ -94,13 +94,17 @@ public class MainActivity extends AppCompatActivity implements Constants {
         super.onDestroy();
     }
 
-    protected void printResult(String string) {
+    protected void printResult(StringBuilder string) {
         binding.textView.setText(string);
+    }
+
+    protected void printLog(StringBuilder string) {
+        binding.textViewLog.setText(string);
     }
 
     @SuppressLint("SetTextI18n")
     protected void restorePrintResult() {
-        if (calculator.getResult() == 0.0) binding.textView.setText(calculator.getValue1());
-        else binding.textView.setText(calculator.getResult().toString());
+        if (calculator.getResult().length() == 0) binding.textView.setText(calculator.getValue1());
+        else binding.textView.setText(calculator.getResult());
     }
 }

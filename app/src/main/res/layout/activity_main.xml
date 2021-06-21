@@ -7,27 +7,43 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
+        android:background="@color/back_day"
+
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textViewLog"
+            style="@style/Theme.Calculator.TextView.Log"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
             style="@style/Theme.Calculator.TextView"
-            android:id="@+id/textView" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLog" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_setting"
-            android:layout_gravity="start|top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/setting_padding"
+            android:layout_gravity="start|top"
             android:clickable="true"
             android:focusable="true"
-            android:src="@mipmap/ic_settings_white_24dp" />
+            android:padding="@dimen/setting_padding"
+            android:src="@mipmap/ic_settings_white_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout style="@style/Theme.Calculator.LayoutStyle">
 
