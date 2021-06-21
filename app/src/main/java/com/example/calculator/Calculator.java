@@ -8,7 +8,9 @@ public class Calculator implements Parcelable {
     private StringBuilder value1 = new StringBuilder("");
     private StringBuilder value2 = new StringBuilder("");
     private StringBuilder log = new StringBuilder("");
+    private StringBuilder savedLog = new StringBuilder("");
     private StringBuilder result = new StringBuilder("");
+    private StringBuilder savedResult = new StringBuilder("");
     private String sign;
     private String currentSign;
     private boolean hasDot = false;
@@ -20,6 +22,18 @@ public class Calculator implements Parcelable {
 
     protected StringBuilder getValue1() {
         return value1;
+    }
+
+    public StringBuilder getLog() {
+        return log;
+    }
+
+    public StringBuilder getSavedResult() {
+        return savedResult;
+    }
+
+    public StringBuilder getSavedLog() {
+        return savedLog;
     }
 
     protected Calculator() {
@@ -34,12 +48,14 @@ public class Calculator implements Parcelable {
     }
 
     protected Calculator(Parcel in) {
-        if (in.readByte() == 0) result = null;
-        else result = (StringBuilder) in.readValue(getClass().getClassLoader());
+        if (in.readByte() == 0) savedResult = null;
+        else savedResult = (StringBuilder) in.readValue(getClass().getClassLoader());
+        if (in.readByte() == 0) log = null;
+        else log = (StringBuilder) in.readValue(getClass().getClassLoader());
+        if (in.readByte() == 0) savedLog = null;
+        else savedLog = (StringBuilder) in.readValue(getClass().getClassLoader());
         if (in.readByte() == 0) value1 = null;
         else value1 = (StringBuilder) in.readValue(getClass().getClassLoader());
-        if (in.readByte() == 0) value2 = null;
-        else value2 = (StringBuilder) in.readValue(getClass().getClassLoader());
         hasDot = in.readByte() != 0;
     }
 
@@ -56,9 +72,17 @@ public class Calculator implements Parcelable {
     };
 
     protected void setField(String symbol) {
+        checkExtraSavedInfo();
         value1.append(symbol);
         printValue(value1);
         updateLog(symbol);
+    }
+
+    private void checkExtraSavedInfo() {
+        if (savedResult.length() != 0) {
+            savedLog.delete(0, savedLog.length());
+            savedResult.delete(0, savedResult.length());
+        }
     }
 
     private void printValue(StringBuilder numbers) {
@@ -72,21 +96,22 @@ public class Calculator implements Parcelable {
 
     protected void operationArithmetic(String s) {
         if (value1.length() != 0) {
+            checkExtraDot();
             hasDot = false;
-//            result.delete(0, result.length());
 
             getArithmeticResult();
             setValue2();
-//            if ((s.equals("=")) && (value2.length()) != 0) {
-//                updateLog("=");
-//                operationEqual();
-//            }
 
             currentSign = s;
             value1.delete(0, value1.length());
-//            if (!s.equals("=")) {
-                updateLog(s);
-//            }
+            updateLog(s);
+        }
+    }
+
+    private void checkExtraDot() {
+        if (value1.charAt(value1.length() - 1) == '.') {
+            value1.deleteCharAt(value1.length() - 1);
+            log.deleteCharAt(log.length() - value1.length());
         }
     }
 
@@ -113,7 +138,6 @@ public class Calculator implements Parcelable {
                     break;
             }
             casting(summary);
-//            printResult();
             main.printResult(result);
             value2.delete(0, value2.length());
         }
@@ -130,8 +154,8 @@ public class Calculator implements Parcelable {
     }
 
     protected void printResult() {
-            main.printResult(result);
-            updateLog(result);
+        main.printResult(result);
+        updateLog(result);
     }
 
     private void setValue2() {
@@ -147,8 +171,14 @@ public class Calculator implements Parcelable {
             getArithmeticResult();
             updateLog("=");
             printResult();
+            saveResultAndLog();
             setDefault();
         }
+    }
+
+    private void saveResultAndLog() {
+        savedResult.append(result);
+        savedLog.append(log);
     }
 
     private void setDefault() {
@@ -191,18 +221,14 @@ public class Calculator implements Parcelable {
     }
 
     protected void operationReverse() {
-        if (value1.length() != 0) {
-            if (value1.charAt(0) != '-') {
+        if ((value1.length() != 0) && (value1.charAt(0) != '0')) {
+            if ((value1.charAt(0) != '-')) {
                 value1.insert(0, '-');
                 log.insert(log.length() - value1.length() + 1, '-');
-            }
-            else {
+            } else {
                 value1.deleteCharAt(0);
                 log.deleteCharAt(log.length() - value1.length() - 1);
             }
-        } else {
-            value1.insert(0, '-');
-            log.insert(0, '-');
         }
         printValue(value1);
         updateLog("");
@@ -215,20 +241,25 @@ public class Calculator implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (result.length() == 0) dest.writeByte((byte) 0);
+        if (savedResult.length() == 0) dest.writeByte((byte) 0);
         else {
             dest.writeByte((byte) 1);
-            dest.writeValue(result);
+            dest.writeValue(savedResult);
+        }
+        if (log.length() == 0) dest.writeByte((byte) 0);
+        else {
+            dest.writeByte((byte) 1);
+            dest.writeValue(log);
+        }
+        if (savedLog.length() == 0) dest.writeByte((byte) 0);
+        else {
+            dest.writeByte((byte) 1);
+            dest.writeValue(savedLog);
         }
         if (value1 == null) dest.writeByte((byte) 0);
         else {
             dest.writeByte((byte) 1);
             dest.writeValue(value1);
-        }
-        if (value2 == null) dest.writeByte((byte) 0);
-        else {
-            dest.writeByte((byte) 1);
-            dest.writeValue(value2);
         }
         dest.writeByte((byte) (hasDot ? 1 : 0));
     }

@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
         super.onRestoreInstanceState(savedInstanceState);
         calculator = savedInstanceState.getParcelable(DATA);
         restorePrintResult();
+        restorePrintLog();
         calculator.setMainActivity(this);
     }
 
@@ -102,9 +103,13 @@ public class MainActivity extends AppCompatActivity implements Constants {
         binding.textViewLog.setText(string);
     }
 
-    @SuppressLint("SetTextI18n")
-    protected void restorePrintResult() {
-        if (calculator.getResult().length() == 0) binding.textView.setText(calculator.getValue1());
-        else binding.textView.setText(calculator.getResult());
+    private void restorePrintLog() {
+        if (calculator.getLog().length() != 0) binding.textViewLog.setText(calculator.getLog());
+        else binding.textViewLog.setText(calculator.getSavedLog());
+    }
+
+    private void restorePrintResult() {
+        if (calculator.getSavedResult().length() == 0) binding.textView.setText(calculator.getValue1());
+        else binding.textView.setText(calculator.getSavedResult());
     }
 }
