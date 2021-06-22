@@ -16,7 +16,7 @@
     <string name="div">÷</string>
     <string name="equal">=</string>
     <string name="dot">.</string>
-    <string name="clear">AC</string>
+    <string name="clear">C</string>
     <string name="reverse">+/-</string>
     <string name="setting_text_title">Settings</string>
     <string name="switch_day_night">Use Dark Theme</string>

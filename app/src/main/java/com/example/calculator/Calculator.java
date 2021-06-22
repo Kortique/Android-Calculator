@@ -16,10 +16,6 @@ public class Calculator implements Parcelable {
     private boolean hasDot = false;
     private MainActivity main;
 
-    protected StringBuilder getResult() {
-        return result;
-    }
-
     protected StringBuilder getValue1() {
         return value1;
     }
@@ -72,10 +68,39 @@ public class Calculator implements Parcelable {
     };
 
     protected void setField(String symbol) {
-        checkExtraSavedInfo();
-        value1.append(symbol);
+        if (checkExtraNull(symbol)) {
+            checkExtraSavedInfo();
+            value1.append(symbol);
+            printValue(value1);
+            updateLog(symbol);
+        }
+    }
+
+    private boolean checkExtraNull(String symbol) {
+        if (value1.length() == 1 && value1.charAt(0) == '0') {
+            setDotAfterNull(symbol);
+            return false;
+        }
+        if (value1.length() == 0 && symbol.equals("0")) {
+            setNullAndDotAfterPressNull();
+            return false;
+        }
+        return true;
+    }
+
+    private void setDotAfterNull(String symbol) {
+        value1.append(".").append(symbol);
         printValue(value1);
-        updateLog(symbol);
+        log.append(".").append(symbol);
+        main.printLog(log);
+        hasDot = true;
+    }
+
+    private void setNullAndDotAfterPressNull() {
+        value1.append("0.");
+        printValue(value1);
+        updateLog("0.");
+        hasDot = true;
     }
 
     private void checkExtraSavedInfo() {
@@ -95,8 +120,7 @@ public class Calculator implements Parcelable {
     }
 
     protected void operationArithmetic(String s) {
-        if (value1.length() != 0) {
-            checkExtraDot();
+        if ((value1.length() != 0) && (value1.charAt(value1.length() - 1) != '.')) {
             hasDot = false;
 
             getArithmeticResult();
@@ -105,13 +129,6 @@ public class Calculator implements Parcelable {
             currentSign = s;
             value1.delete(0, value1.length());
             updateLog(s);
-        }
-    }
-
-    private void checkExtraDot() {
-        if (value1.charAt(value1.length() - 1) == '.') {
-            value1.deleteCharAt(value1.length() - 1);
-            log.deleteCharAt(log.length() - value1.length());
         }
     }
 
@@ -201,6 +218,7 @@ public class Calculator implements Parcelable {
                 updateLog(".");
             }
             hasDot = true;
+            printValue(value1);
         }
     }
 
@@ -221,7 +239,7 @@ public class Calculator implements Parcelable {
     }
 
     protected void operationReverse() {
-        if ((value1.length() != 0) && (value1.charAt(0) != '0')) {
+        if (value1.length() != 0) {
             if ((value1.charAt(0) != '-')) {
                 value1.insert(0, '-');
                 log.insert(log.length() - value1.length() + 1, '-');
