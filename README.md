@@ -1,2 +1,2 @@
 # Android-Calculator
-[image alt]https://github.com/Kortique/Android-Calculator/blob/master/app/src/main/res/mipmap-anydpi-v26/android_calculator.png
+![image](https://user-images.githubusercontent.com/40215395/122893880-64af0180-d34f-11eb-9cfd-c6a86242e2ed.png)
