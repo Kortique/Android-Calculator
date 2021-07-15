@@ -6,10 +6,10 @@ import android.os.Parcelable;
 public class Calculator implements Parcelable {
 
     private StringBuilder value1 = new StringBuilder("");
-    private StringBuilder value2 = new StringBuilder("");
+    private final StringBuilder value2 = new StringBuilder("");
     private StringBuilder log = new StringBuilder("");
     private StringBuilder savedLog = new StringBuilder("");
-    private StringBuilder result = new StringBuilder("");
+    private final StringBuilder result = new StringBuilder("");
     private StringBuilder savedResult = new StringBuilder("");
     private String sign;
     private String currentSign;
